@@ -14,6 +14,21 @@ Aplikasi web sederhana untuk Android Smart TV / browser TV:
 - Running text, logo, dan opsi audio ON/OFF
 - Login admin + CSRF + rate limit login
 
+## Screenshot Halaman
+
+<table>
+  <tr>
+    <td align="center"><strong>Halaman Utama</strong></td>
+    <td align="center"><strong>Halaman Login</strong></td>
+    <td align="center"><strong>Halaman Admin</strong></td>
+  </tr>
+  <tr>
+    <td><img src="screenshot/halaman-utama.png" alt="Halaman Utama" width="100%"></td>
+    <td><img src="screenshot/halaman-login.png" alt="Halaman Login" width="100%"></td>
+    <td><img src="screenshot/halaman-admin.png" alt="Halaman Admin" width="100%"></td>
+  </tr>
+</table>
+
 ## Lokasi Proyek
 
 `/Applications/XAMPP/xamppfiles/htdocs/tvinformasi`
