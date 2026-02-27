@@ -22,7 +22,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if ($error === '' && $action === 'upload') {
-        if (!isset($_FILES['video']) || !is_array($_FILES['video'])) {
+        if (!is_dir(UPLOAD_DIR) || !is_writable(UPLOAD_DIR)) {
+            $error = 'Folder upload tidak bisa ditulis server. Cek permission folder uploads.';
+        } elseif (!isset($_FILES['video']) || !is_array($_FILES['video'])) {
             $error = 'File video tidak ditemukan.';
         } else {
             $file = $_FILES['video'];
@@ -125,6 +127,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         if (isset($_FILES['logo']) && is_array($_FILES['logo']) && (int)($_FILES['logo']['error'] ?? UPLOAD_ERR_NO_FILE) !== UPLOAD_ERR_NO_FILE) {
+            if (!is_dir(UPLOAD_DIR) || !is_writable(UPLOAD_DIR)) {
+                $error = 'Folder upload tidak bisa ditulis server. Cek permission folder uploads.';
+            }
             $logo = $_FILES['logo'];
 
             if ((int)$logo['error'] !== UPLOAD_ERR_OK) {
