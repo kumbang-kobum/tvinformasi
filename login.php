@@ -113,7 +113,7 @@ $formToken = getCsrfToken();
         <?php if ($error !== ''): ?>
             <div class="error"><?= htmlspecialchars($error, ENT_QUOTES, 'UTF-8') ?></div>
         <?php endif; ?>
-        <div class="help">Default awal: <strong>admin / admin123</strong>. Setelah login, ubah password di menu admin.</div>
+        <div class="help">Default awal: <strong>naira / nafasya123</strong>. Setelah login, ubah password di menu admin.</div>
     </div>
 </body>
 </html>

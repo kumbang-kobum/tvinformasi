@@ -23,7 +23,7 @@ function ensureStorage(): void
 function defaultSettings(): array
 {
     return [
-        'ticker_text' => 'Selamat datang di layanan informasi rumah sakit.',
+        'ticker_text' => 'Selamat datang di layanan informasi n2N-Informasi-TV.',
         'logo_filename' => '',
         'video_muted' => '1',
     ];

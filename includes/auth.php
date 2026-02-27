@@ -193,6 +193,60 @@ function updateAdminPassword(string $currentPassword, string $newPassword): arra
     return [true, 'Password berhasil diubah.'];
 }
 
+function updateAdminUsername(string $currentPassword, string $newUsername): array
+{
+    $pdo = db();
+
+    $currentUsername = (string)($_SESSION['admin_username'] ?? 'admin');
+    $stmt = $pdo->prepare('SELECT id, username, password_hash FROM admin_users WHERE username = :u LIMIT 1');
+    $stmt->execute([':u' => $currentUsername]);
+    $admin = $stmt->fetch();
+
+    if (!is_array($admin)) {
+        return [false, 'Akun admin tidak ditemukan.'];
+    }
+
+    $savedHash = (string)($admin['password_hash'] ?? '');
+    if ($savedHash === '' || !password_verify($currentPassword, $savedHash)) {
+        return [false, 'Password saat ini tidak sesuai.'];
+    }
+
+    $newUsername = trim($newUsername);
+    if (strlen($newUsername) < 3 || strlen($newUsername) > 50) {
+        return [false, 'Username baru harus 3-50 karakter.'];
+    }
+
+    if (!preg_match('/^[A-Za-z0-9_.-]+$/', $newUsername)) {
+        return [false, 'Username hanya boleh huruf, angka, titik, strip, atau underscore.'];
+    }
+
+    $sameUsername = hash_equals((string)$admin['username'], $newUsername);
+    if ($sameUsername) {
+        return [false, 'Username baru sama dengan username saat ini.'];
+    }
+
+    $check = $pdo->prepare('SELECT id FROM admin_users WHERE username = :u LIMIT 1');
+    $check->execute([':u' => $newUsername]);
+    if ($check->fetch()) {
+        return [false, 'Username sudah digunakan. Pilih username lain.'];
+    }
+
+    $upd = $pdo->prepare('UPDATE admin_users SET username = :u, updated_at = :m WHERE id = :id');
+    $ok = $upd->execute([
+        ':u' => $newUsername,
+        ':m' => date('Y-m-d H:i:s'),
+        ':id' => (int)$admin['id'],
+    ]);
+
+    if (!$ok) {
+        return [false, 'Gagal menyimpan username baru.'];
+    }
+
+    $_SESSION['admin_username'] = $newUsername;
+
+    return [true, 'Username berhasil diubah menjadi ' . $newUsername . '.'];
+}
+
 function isLoggedIn(): bool
 {
     return isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true;

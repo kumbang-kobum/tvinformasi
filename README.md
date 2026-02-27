@@ -1,10 +1,10 @@
-# TV Informasi Rumah Sakit
+# TV Informasi
 
 Aplikasi web sederhana untuk Android Smart TV / browser TV:
 - Memutar playlist video otomatis berurutan
 - Loop kembali ke video pertama setelah playlist selesai
 - Panel admin untuk upload/hapus/reorder video
-- Running text, logo RS, dan opsi audio ON/OFF
+- Running text, logo, dan opsi audio ON/OFF
 - Login admin + CSRF + rate limit login
 
 ## Lokasi Proyek
@@ -55,8 +55,8 @@ Jika MySQL Anda berbeda, edit konstanta di `includes/db.php`.
 
 - URL: `http://localhost/tvinformasi/admin.php`
 - Default awal:
-  - Username: `admin`
-  - Password: `admin123`
+  - Username: `naira`
+  - Password: `nafasya123`
 
 Setelah login pertama, ubah password di panel admin.
 
@@ -81,7 +81,7 @@ Setelah login pertama, ubah password di panel admin.
 
 Di menu `Tampilan Layar TV`:
 - Ubah `Running text`
-- Upload / hapus logo RS
+- Upload / hapus logo
 - Toggle audio:
   - Centang `Matikan audio video (mode senyap)` untuk mute
 

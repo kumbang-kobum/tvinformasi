@@ -109,7 +109,7 @@ function seedDefaults(PDO $pdo): void
 
     if ($count === 0) {
         $ins = $pdo->prepare('INSERT INTO settings (setting_key, setting_value) VALUES (:k, :v)');
-        $ins->execute([':k' => 'ticker_text', ':v' => 'Selamat datang di layanan informasi rumah sakit.']);
+        $ins->execute([':k' => 'ticker_text', ':v' => 'Selamat datang di layanan informasi n2N-Informasi-TV.']);
         $ins->execute([':k' => 'logo_filename', ':v' => '']);
         $ins->execute([':k' => 'video_muted', ':v' => '1']);
     } else {

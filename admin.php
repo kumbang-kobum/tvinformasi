@@ -11,6 +11,7 @@ $notice = '';
 $error = '';
 $videos = loadVideos();
 $settings = loadSettings();
+$adminUser = loadAdminUser();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $action = (string)($_POST['action'] ?? '');
@@ -184,6 +185,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
+    if ($error === '' && $action === 'change_username') {
+        $currentPassword = (string)($_POST['current_password_username'] ?? '');
+        $newUsername = trim((string)($_POST['new_username'] ?? ''));
+
+        [$ok, $msg] = updateAdminUsername($currentPassword, $newUsername);
+        if ($ok) {
+            $notice = $msg;
+            $adminUser = loadAdminUser();
+        } else {
+            $error = $msg;
+        }
+    }
+
     if ($error === '' && $action === 'logout') {
         session_destroy();
         header('Location: index.php');
@@ -315,7 +329,7 @@ if ((string)($settings['logo_filename'] ?? '') !== '') {
 <body>
 <div class="container">
     <div class="row" style="justify-content: space-between;">
-        <h1>Admin TV Informasi Rumah Sakit</h1>
+        <h1>Admin n2N-TV Informasi</h1>
         <div class="top-links">
             <a href="index.php" target="_blank">Buka Layar TV</a>
             <form method="post">
@@ -360,7 +374,7 @@ if ((string)($settings['logo_filename'] ?? '') !== '') {
                     Matikan audio video (mode senyap)
                 </label>
 
-                <label for="logo" style="display:block; margin-top:.8rem;"><strong>Logo rumah sakit</strong></label>
+                <label for="logo" style="display:block; margin-top:.8rem;"><strong>Logo</strong></label>
                 <input id="logo" type="file" name="logo" accept="image/png,image/jpeg,image/webp">
                 <div class="hint">Format: png/jpg/jpeg/webp, maksimal 5MB.</div>
 
@@ -422,6 +436,25 @@ if ((string)($settings['logo_filename'] ?? '') !== '') {
             <?php endif; ?>
             </tbody>
         </table>
+    </div>
+
+    <div class="card">
+        <h2>Ubah Username Admin</h2>
+        <div class="hint">Username saat ini: <strong><?= h((string)($adminUser['username'] ?? '-')) ?></strong></div>
+        <form method="post" class="row" style="margin-top:.7rem; align-items:flex-end;">
+            <input type="hidden" name="action" value="change_username">
+            <input type="hidden" name="csrf_token" value="<?= h($formToken) ?>">
+
+            <div>
+                <label for="new_username"><strong>Username Baru</strong></label>
+                <input id="new_username" type="text" name="new_username" minlength="3" maxlength="50" required>
+            </div>
+            <div>
+                <label for="current_password_username"><strong>Password Saat Ini</strong></label>
+                <input id="current_password_username" type="password" name="current_password_username" required>
+            </div>
+            <button class="btn-primary" type="submit">Simpan Username</button>
+        </form>
     </div>
 
     <div class="card">

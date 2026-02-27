@@ -198,7 +198,7 @@ if ((string)($settings['logo_filename'] ?? '') !== '') {
 
     <?php if ($logoUrl !== ''): ?>
         <div class="logo-wrap">
-            <img src="<?= h($logoUrl) ?>" alt="Logo Rumah Sakit">
+            <img src="<?= h($logoUrl) ?>" alt="Logo">
         </div>
     <?php endif; ?>
 
@@ -211,7 +211,7 @@ if ((string)($settings['logo_filename'] ?? '') !== '') {
 
     <?php $tickerText = trim((string)($settings['ticker_text'] ?? '')); ?>
     <?php if ($tickerText !== ''): ?>
-        <div class="ticker" aria-label="Running text informasi rumah sakit">
+        <div class="ticker" aria-label="Running text informasi">
             <div class="ticker-inner">
                 <span class="ticker-item"><?= h($tickerText) ?> •</span>
                 <span class="ticker-item"><?= h($tickerText) ?> •</span>
