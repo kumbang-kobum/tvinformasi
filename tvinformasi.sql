@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Feb 27, 2026 at 07:48 PM
+-- Generation Time: Feb 27, 2026 at 08:17 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -91,13 +91,6 @@ CREATE TABLE `videos` (
   `uploaded_at` datetime NOT NULL,
   `sort_order` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `videos`
---
-
-INSERT INTO `videos` (`id`, `original_name`, `filename`, `uploaded_at`, `sort_order`) VALUES
-('de0a76c0ad08cabf', 'Screen Recording 2026-02-26 at 23.27.57.mov', '20260227_191823_6da1dd0a.mov', '2026-02-27 19:18:23', 1);
 
 --
 -- Indexes for dumped tables
