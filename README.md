@@ -1,3 +1,10 @@
+## Traktir Kopi BCA 8110400102 A/N Chandra Irawan** ☕🙏 
+## ☕ Donasi
+Dukung pengembangan aplikasi ini melalui Saweria:  
+
+| Scan QR Code | Klik Link |
+|--------------|-----------|
+| <img src="screenshot/qrsaweria.png" width="180" /> | [👉 Saweria.co](https://saweria.co/KumbangKobum) | 
 # TV Informasi
 
 Aplikasi web sederhana untuk Android Smart TV / browser TV:
