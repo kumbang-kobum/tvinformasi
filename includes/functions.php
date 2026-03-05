@@ -140,8 +140,11 @@ function nextOrder(array $videos): int
     if (empty($videos)) {
         return 1;
     }
-
-    $max = max(array_map(static fn(array $v): int => (int)($v['order'] ?? 0), $videos));
+//hapus komentar dibawah ini jika menggunakan PHP 8.0 atau lebih baru
+$max = max(array_map(static fn(array $v): int => (int)($v['order'] ?? 0), $videos));
+    // $max = max(array_map(static function (array $v): int {
+    //     return (int)($v['order'] ?? 0);
+    // }, $videos));
     return $max + 1;
 }
 
